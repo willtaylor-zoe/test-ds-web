@@ -26,7 +26,7 @@ jobs:
       - run: npm ci
       - run: npm run build:ds
       - run: |
-          cd ds/
+          cd ds/dist
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_TOKEN }}" > ~/.npmrc
           npm publish --registry=https://npm.pkg.github.com
         env:
