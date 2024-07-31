@@ -22,7 +22,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install
 
       - name: Build packages
         run: npx turbo run build --scope=@zoe/ui
