@@ -1,6 +1,6 @@
 {
   "name": "@willtaylor-zoe/ds",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "sideEffects": false,
   "license": "MIT",
   "exports": {
@@ -30,6 +30,9 @@
     "react": "^18.2.0",
     "styled-components": "^6.1.12",
     "styled-normalize": "^8.1.1"
+  },
+  "peerDependencies": {
+    "styled-components": "^6.1.12"
   },
   "publishConfig": {
     "access": "restricted",
