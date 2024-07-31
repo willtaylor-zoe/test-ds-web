@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 import { fontFamilies, typographyStyles } from './typographyStyles'
 
 export type FontFamilyType = keyof typeof fontFamilies
