@@ -14,9 +14,13 @@
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint . --max-warnings 0",
-    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build --filter=docs^... && changeset publish"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@types/react": "^18.2.61",
