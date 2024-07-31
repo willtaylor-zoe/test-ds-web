@@ -1,54 +1,35 @@
-name: Publish Packages
+name: Publish UI Package
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'packages/ui/**'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   publish:
-    name: Publish Packages
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
-      - name: Setup Node.js 20.x
-        uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
-          node-version: 20
+          node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
 
-      - name: Configure npm for GitHub Packages
-        run: echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Install Dependencies
-        run: yarn install
+      - name: Build packages
+        run: npx turbo run build --scope=@zoe/ui
 
-      - name: Build Packages
-        run: yarn build
-
-      - name: Publish Packages
+      - name: Publish package
         run: |
-          for package in packages/*; do
-            if [ -d "$package" ]; then
-              cd "$package"
-              if [ -f package.json ]; then
-                if grep -q '"private": true' package.json; then
-                  echo "Skipping private package $package"
-                else
-                  echo "Publishing $package"
-                  yarn publish --access restricted
-                fi
-              fi
-              cd - > /dev/null
-            fi
-          done
+          cd packages/ui
+          npm publish
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.GH_TOKEN}}
