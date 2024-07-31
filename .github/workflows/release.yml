@@ -1,4 +1,4 @@
-name: Publish Package
+name: Publish Packages
 
 on:
   push:
@@ -9,7 +9,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   publish:
-    name: Publish Package
+    name: Publish Packages
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -35,6 +35,16 @@ jobs:
         run: yarn build
 
       - name: Publish Packages
-        run: yarn publish --access restricted
+        run: |
+          for package in packages/*; do
+            if [ -d "$package" ]; then
+              cd "$package"
+              if [ -f package.json ]; then
+                echo "Publishing $package"
+                yarn publish --access restricted
+              fi
+              cd - > /dev/null
+            fi
+          done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
