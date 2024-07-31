@@ -27,7 +27,7 @@ jobs:
       - name: Build packages
         run: npm run build
 
-      - name: Publish DS Package
+      - name: Publish Packages
         run: |
           cd packages/design-system/dist
           echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" > ~/.npmrc
