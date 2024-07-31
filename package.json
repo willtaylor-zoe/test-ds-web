@@ -1,5 +1,5 @@
 {
-  "name": "radzionkit",
+  "name": "design-system-web",
   "version": "0.0.1",
   "private": true,
   "workspaces": [
@@ -7,7 +7,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/willtaylor-zoe/test-ds-web.git"
+    "url": "git+https://github.com/willtaylor-zoe/test-ds-web.git"
   },
   "scripts": {
     "postinstall": "husky install",
