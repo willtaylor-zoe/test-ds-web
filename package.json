@@ -1,33 +1,21 @@
 {
-  "name": "design-system-web",
-  "version": "0.0.1",
+  "name": "design-system",
   "private": true,
-  "workspaces": [
-    "./**"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/willtaylor-zoe/test-ds-web.git"
-  },
   "scripts": {
-    "postinstall": "husky install",
-    "format": "eslint --fix && prettier --write",
-    "typecheck": "tsc --noEmit",
-    "sync-packages": "syncpack fix-mismatches",
-    "build:ds": "cd ds && yarn build"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@swc/core": "^1.7.3",
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
-    "eslint": "^8.56.0",
-    "husky": "^8.0.3",
-    "lint-staged": "^15.2.0",
-    "prettier": "^3.1.1",
-    "syncpack": "^12.0.1",
-    "tsup": "^8.0.2",
-    "typescript": "^5.3.3"
-  }
+    "@changesets/cli": "^2.27.1",
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.10"
+  },
+  "packageManager": "npm@10.8.2",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
 }
