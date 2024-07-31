@@ -5,6 +5,10 @@
   "workspaces": [
     "./**"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/willtaylor-zoe/test-ds-web.git"
+  },
   "scripts": {
     "postinstall": "husky install",
     "format": "eslint --fix && prettier --write",
