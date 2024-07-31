@@ -1,4 +1,5 @@
 {
+  "name": "design-system",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -15,7 +16,6 @@
     "prettier": "^3.2.5",
     "turbo": "^2.0.10"
   },
-  "name": "design-system",
   "packageManager": "yarn@1.22.22",
   "workspaces": [
     "apps/*",
