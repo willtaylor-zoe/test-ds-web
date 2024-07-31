@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { fontFamilies, typographyStyles } from './typographyStyles'
+import { fontFamilies, typographyStyles } from './TypographyStyles'
 
 export type FontFamilyType = keyof typeof fontFamilies
 export type TextVariantType = keyof typeof typographyStyles
@@ -19,9 +19,22 @@ export type TextColourType =
   | 'link-navigation-bold'
   | 'link-navigation-bold-hover'
 
-type HTMLTextElement = 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 's'
+type HTMLTextElement =
+  | 'p'
+  | 'span'
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 's'
 type TextAlignType = 'left' | 'center' | 'right' | 'justify' | 'inherit'
-type TextDecorationType = 'overline' | 'line-through' | 'underline' | 'underline overline'
+type TextDecorationType =
+  | 'overline'
+  | 'line-through'
+  | 'underline'
+  | 'underline overline'
 
 const StyledTextElement = styled.div<{
   $variant: TextVariantType
