@@ -1,6 +1,6 @@
 {
   "name": "@willtaylor-zoe/ds",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "sideEffects": false,
   "license": "MIT",
   "exports": {
