@@ -1,0 +1,49 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Introduction" />
+
+## 👋 Introduction
+
+Here's the [Figma link](https://www.figma.com/design/emycBlnyKjfXwW9K6pKvsh/%E2%9C%85-LBR%3A-Web-design-system?node-id=1096-69537&m=dev) for the ZOE Web Design System [WIP].
+
+## 📚 How it works
+
+- Components use [React ARIA components](https://react-spectrum.adobe.com/react-aria/components.html) under the hood where relevant (apart from Form - see below).
+- Form components (DSInput, DSForm) uses Formik since that's what we use to create checkout forms at the moment.
+  - We probably want to move away from Formik longer term, to use a more modern, lightweight library, but I didn't want us to make this big change now.
+- DSForm is essentially the Formik form wrapper. It accepts children, which will likely comprise DSInput and DSButton.
+
+## 📦 How to use
+
+The package is published to GitHub Packages. To use it in your project, you need to add/update your `.npmrc`:
+
+```
+//npm.pkg.github.com/:_authToken={{ GITHUB_TOKEN }}
+@zoe:registry=https://npm.pkg.github.com
+```
+
+Where `{{ GITHUB_TOKEN }}` is a GitHub Personal Access Token with `read:packages` scope (See [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)).
+
+Then, you can install the package:
+
+```
+npm install @zoe/ds-web
+```
+
+## 🚀 Principles to help you get started
+
+- You shouldn't define margins in your components. Use DSSpacer instead.
+- You shouldn't need to create a div just to create a flexbox . Use DSFlex instead.
+- You shouldn't create p tags with text. Use DSText instead.
+- DSButton and DSLinkButton have the same styles (i.e. to look like buttons), but DSLinkButton is a `a` tag under the hood (via NextJS's Link component + React ARIA's Link component).
+- Ideally, responsive styling based on viewport size shouldn't happen at an individual component level, but at a page level (this assumes well structured use of CSS variables at a component level).
+- There are more Design System components to come. These are listed in the [Growth Linear board](https://linear.app/joinzoe/project/design-system-web-46e307dbb4d0/issues).
+
+## 💡 Tips
+
+- If you use VSCode, download the extension [Styled Global Variables Autocomplete](https://marketplace.visualstudio.com/items?itemName=yeion7.styled-global-variables-autocomplete) to help with CSS variables autocompletion. Ensure you have a file in `.vscode/settings.json` with the following:
+  ```json
+  {
+    "variablesAutocomplete.include": "**/styles/**/*Styles.ts"
+  }
+  ```

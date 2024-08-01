@@ -5,12 +5,20 @@ function getAbsolutePath(value) {
 }
 
 const config = {
-  stories: ["../stories/*.stories.tsx", "../stories/**/*.stories.tsx"],
+  stories: [
+    "../stories/*.stories.tsx",
+    "../stories/**/*.stories.tsx",
+    "../stories/**/*.mdx"
+  ],
+
   addons: [
     getAbsolutePath("@storybook/addon-links"),
     getAbsolutePath("@storybook/addon-essentials"),
-    "@storybook/addon-themes"
+    getAbsolutePath("@storybook/addon-themes"),
+    "@chromatic-com/storybook",
+    "@storybook/addon-docs"
   ],
+
   framework: {
     name: getAbsolutePath("@storybook/react-vite"),
     options: {},
@@ -26,17 +34,32 @@ const config = {
       resolve: {
         alias: [
           {
-            find: "ui",
-            replacement: resolve(__dirname, "../../../packages/ui/"),
+            find: "design-system",
+            replacement: resolve(__dirname, "../../../packages/design-system/"),
           },
         ],
+      },
+      build: {
+        rollupOptions: {
+          output: {
+            assetFileNames: ({ name }) => {
+              if (/\.(woff|woff2|eot|ttf|otf)$/.test(name)) {
+                return 'fonts/[name][extname]';
+              }
+              return '[name].[ext]';
+            },
+          },
+        },
       },
     };
   },
 
-  docs: {
-    autodocs: true,
-  },
+  docs: {},
+
+  typescript: {
+    reactDocgen: "react-docgen-typescript"
+  }
+
 };
 
 export default config;
